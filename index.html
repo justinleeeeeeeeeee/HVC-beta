@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NoobDaily Check-In</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 400px; margin: auto; }
+    input, select, button { width: 100%; padding: 12px; margin-top: 10px; font-size: 16px; }
+    #status { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>NoobDaily Duty Check-In</h2>
+
+  <label for="name">Select Your Name</label>
+  <select id="name" required>
+    <option value="">-- Choose your name --</option>
+    <option>Asher</option>
+    <option>Benjamin</option>
+    <option>Chen Chang</option>
+    <option>Daniel</option>
+    <option>Dervin</option>
+    <option>Dong Han</option>
+    <option>Eason</option>
+    <option>Edwin</option>
+    <option>Emmanuel</option>
+    <option>Eric</option>
+    <option>Esher</option>
+    <option>Ethan</option>
+    <option>Farhansha</option>
+    <option>Harshith</option>
+    <option>Hibri</option>
+    <option>Hui Han</option>
+    <option>Isaac Chew</option>
+    <option>Jason</option>
+    <option>Joshua</option>
+    <option>Keane</option>
+    <option>Kieran</option>
+    <option>Madan</option>
+    <option>Philip</option>
+    <option>Qi An</option>
+    <option>Raphael</option>
+    <option>Ron</option>
+    <option>Ruo Chen</option>
+    <option>Shunxin</option>
+    <option>Viknesh</option>
+  </select>
+
+  <label for="shift">Shift</label>
+  <select id="shift" required>
+    <option value="">Select shift</option>
+    <option value="AM">AM (0800–1730)</option>
+    <option value="PM">PM (1730–0800)</option>
+  </select>
+
+  <button onclick="submitForm()">I have arrived</button>
+  <p id="status"></p>
+
+  <script>
+    async function submitForm() {
+      const name = document.getElementById("name").value;
+      const shift = document.getElementById("shift").value;
+      const status = document.getElementById("status");
+
+      if (!name || !shift) {
+        status.textContent = "⚠️ Please select both your name and shift.";
+        return;
+      }
+
+      status.textContent = "⏳ Submitting...";
+
+      try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbxuO0D-QzNVKqMnI8nj9u3LW0-UQVSHGl49Es1HXzC8_5lx4PNY1zPbjbEbu6htjqDKQA/exec", {
+          method: "POST",
+          body: JSON.stringify({ name, shift }),
+          headers: { "Content-Type": "application/json" }
+        });
+
+        const text = await res.text();
+        status.textContent = text;
+      } catch (err) {
+        status.textContent = "❌ Failed to connect. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
