@@ -11,7 +11,7 @@
   </style>
 </head>
 <body>
-  <h2>NoobDaily Duty Check-In</h2>
+  <h2>Hillview Camp Duty Tracker 1.8</h2>
 
   <label for="name">Select Your Name</label>
   <select id="name" required>
@@ -47,11 +47,14 @@
     <option>Viknesh</option>
   </select>
 
-  <label for="shift">Shift</label>
+  <label for="shift">Duty Type</label>
   <select id="shift" required>
-    <option value="">Select shift</option>
-    <option value="AM">AM (0800–1730)</option>
-    <option value="PM">PM (1730–0800)</option>
+    <option value="">Select duty type</option>
+    <option value="Weekday AM">Weekday AM (1 pt)</option>
+    <option value="Weekday PM">Weekday PM (1 pt)</option>
+    <option value="Friday PM">Friday PM (1.5 pt)</option>
+    <option value="Weekend AM">Weekend AM (2 pt)</option>
+    <option value="Weekend PM">Weekend PM (2 pt)</option>
   </select>
 
   <button onclick="submitForm()">I have arrived</button>
@@ -71,14 +74,14 @@
       status.textContent = "⏳ Submitting...";
 
       try {
-        await fetch("https://script.google.com/macros/s/AKfycbzLofOonMFSVpEJTgRJHf_5MmwtN87eTjXD1CjRKm3SnGAHI57BcnsOpJUVKgT3neb3Ww/exec", {
+        await fetch("YOUR_SCRIPT_URL_HERE", {
           method: "POST",
           mode: "no-cors",
           body: JSON.stringify({ name, shift }),
           headers: { "Content-Type": "application/json" }
         });
 
-        status.textContent = "✅ Submitted! (no-cors mode)";
+        status.textContent = "✅ Submitted!";
       } catch (err) {
         status.textContent = "❌ Failed to connect. Try again.";
       }
