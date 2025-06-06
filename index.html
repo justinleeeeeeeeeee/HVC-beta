@@ -71,7 +71,7 @@
       status.textContent = "⏳ Submitting...";
 
       try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbxuO0D-QzNVKqMnI8nj9u3LW0-UQVSHGl49Es1HXzC8_5lx4PNY1zPbjbEbu6htjqDKQA/exec", {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbzLofOonMFSVpEJTgRJHf_5MmwtN87eTjXD1CjRKm3SnGAHI57BcnsOpJUVKgT3neb3Ww/exec", {
           method: "POST",
           body: JSON.stringify({ name, shift }),
           headers: { "Content-Type": "application/json" }
