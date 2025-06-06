@@ -71,14 +71,14 @@
       status.textContent = "⏳ Submitting...";
 
       try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbzLofOonMFSVpEJTgRJHf_5MmwtN87eTjXD1CjRKm3SnGAHI57BcnsOpJUVKgT3neb3Ww/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycbzLofOonMFSVpEJTgRJHf_5MmwtN87eTjXD1CjRKm3SnGAHI57BcnsOpJUVKgT3neb3Ww/exec", {
           method: "POST",
+          mode: "no-cors",
           body: JSON.stringify({ name, shift }),
           headers: { "Content-Type": "application/json" }
         });
 
-        const text = await res.text();
-        status.textContent = text;
+        status.textContent = "✅ Submitted! (no-cors mode)";
       } catch (err) {
         status.textContent = "❌ Failed to connect. Try again.";
       }
